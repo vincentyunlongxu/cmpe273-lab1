@@ -1,0 +1,12 @@
+defer: this statement to make sure the resource will be freed up at the later time, and it will run after the next function return to the main function. 
+panic: it is a function to cause the runtime error. It is a built in function, and it can cause the program crash. 
+recover: it is also a built in function, it can make panic program back to its normal routine. It has to be called with defer method before the program goes to panic. Otherwise, the program will never execute the recover method if we call the method after the panic function. 
+To recover from a run-time panic, you have to call defer function along with the recover function before calling panic function inside a program. Here is the code to show how to recover.
+
+func main(){
+	defer func(){
+		str := recover()
+		fmt.Println(str)
+	}()
+	panic(“PANIC”)
+}
